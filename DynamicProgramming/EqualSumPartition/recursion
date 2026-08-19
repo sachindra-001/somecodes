@@ -1,0 +1,61 @@
+#include <iostream>
+#include <vector>
+#include <numeric>
+using namespace std;
+
+class Solution {
+public:
+
+    bool solve(int index, int target, vector<int>& nums) {
+
+        // Base condition
+        if (target == 0)
+            return true;
+
+        if (index == 0)
+            return nums[0] == target;
+
+        // Don't take current element
+        bool notTake = solve(index - 1, target, nums);
+
+        // Take current element
+        bool take = false;
+
+        if (nums[index] <= target) {
+            take = solve(index - 1, target - nums[index], nums);
+        }
+
+        return take || notTake;
+    }
+
+    bool canPartition(vector<int>& nums) {
+
+        int sum = accumulate(nums.begin(), nums.end(), 0);
+
+        // Odd sum cannot be divided equally
+        if (sum % 2 != 0)
+            return false;
+
+        int target = sum / 2;
+
+        return solve(nums.size() - 1, target, nums);
+    }
+};
+
+int main() {
+    Solution sol;
+    
+    // Test case 1: [1, 5, 11, 5] - can be partitioned
+    vector<int> nums1 = {1, 5, 11, 5};
+    cout << "Test 1: " << (sol.canPartition(nums1) ? "true" : "false") << endl;
+    
+    // Test case 2: [2, 2, 1, 1] - can be partitioned
+    vector<int> nums2 = {2, 2, 1, 1};
+    cout << "Test 2: " << (sol.canPartition(nums2) ? "true" : "false") << endl;
+    
+    // Test case 3: [1, 2, 5] - cannot be partitioned
+    vector<int> nums3 = {1, 2, 5};
+    cout << "Test 3: " << (sol.canPartition(nums3) ? "true" : "false") << endl;
+    
+    return 0;
+}
