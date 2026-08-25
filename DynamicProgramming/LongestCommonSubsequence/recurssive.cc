@@ -1,3 +1,8 @@
+#include <algorithm>
+#include <iostream>
+#include <string>
+using namespace std;
+
 class Solution {
 public:
     int solve(string& s1, string& s2, int n, int m) {
@@ -26,3 +31,9 @@ public:
         return solve(text1, text2, n, m);
     }
 };
+
+int main() {
+    Solution sol;
+    cout << sol.longestCommonSubsequence("abcde", "ace") << endl;
+    return 0;
+}
