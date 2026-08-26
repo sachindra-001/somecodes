@@ -1,3 +1,10 @@
+#include <iostream>
+#include <vector>
+#include <climits>
+#include <algorithm>
+
+using namespace std;
+
 class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
@@ -50,3 +57,17 @@ public:
         return dp[n][w];
     }
 };
+
+int main() {
+    int n, amount;
+    cin >> n >> amount;
+
+    vector<int> coins(n);
+    for (int &coin : coins) {
+        cin >> coin;
+    }
+
+    Solution solution;
+    cout << solution.coinChange(coins, amount) << endl;
+    return 0;
+}

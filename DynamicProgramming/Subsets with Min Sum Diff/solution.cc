@@ -55,11 +55,16 @@ class Solution {
 };
 
 int main() {
-    Solution sol;
-    vector<int> arr = {1, 6, 11, 5};
+    int n;
+    cin >> n;
 
-    cout << "Minimum subset sum difference: "
-         << sol.minDifference(arr) << endl;
+    vector<int> arr(n);
+    for (int &value : arr) {
+        cin >> value;
+    }
+
+    Solution solution;
+    cout << solution.minDifference(arr) << endl;
 
     return 0;
 }
